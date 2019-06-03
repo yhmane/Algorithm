@@ -1,7 +1,5 @@
 package run;
 
-import hwang.Hwang1463;
-
 import java.io.IOException;
 
 /**
@@ -14,9 +12,5 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        // test 입니다
-        // 삭제 후 커밋 할 예정
-        Hwang1463 hwang = new Hwang1463();
-        hwang.solution();
     }
 }
