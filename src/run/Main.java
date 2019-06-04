@@ -2,6 +2,8 @@ package run;
 
 import java.io.IOException;
 
+import ju.Ju1000;
+
 /**
  * 이 repository의 목적은 코드 리뷰 + 알고리즘입니다.
  * 시간 측정은 BOJ + 각 문제에서 해당 코드를 실행하면 알 수 있습니다!!
@@ -12,5 +14,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+    	Ju1000 ju = new Ju1000();
+    	ju.solution();
     }
 }

@@ -2,6 +2,7 @@ HELP.md
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+/src/run/Main.java
 
 ### STS ###
 .apt_generated
