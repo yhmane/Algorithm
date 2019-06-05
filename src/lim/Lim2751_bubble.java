@@ -3,7 +3,7 @@ package lim;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Lim2751_selection {
+public class Lim2751_bubble {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -12,17 +12,16 @@ public class Lim2751_selection {
 		for(int i = 0; i < n; i++) {
 			nums[i] = Integer.parseInt(br.readLine());
 		}
-		
-		for(int i = 0; i < n - 1; i++) {
-			int tmp = i;
+				
+		for(int i = 0; i < n - 1; i++){
 			
-			for(int j = i + 1; j < n; j++) {
-				if(nums[tmp] > nums[j]) tmp = j;
+			for(int j = 0; j < n - 1 - i; j++) {
+				if(nums[j] > nums[j + 1]) {
+					int tmp = nums[j];
+					nums[j] = nums[j + 1];
+					nums[j + 1] = tmp;
+				}
 			}
-			
-			int tempValue = nums[i];
-			nums[i] = nums[tmp];
-			nums[tmp] = tempValue;
 		}
 		
 		StringBuffer sb = new StringBuffer();
@@ -33,5 +32,4 @@ public class Lim2751_selection {
 		
 		System.out.println(sb);
 	}
-
 }
