@@ -22,7 +22,7 @@ BOJ의 알고리즘 (입출력, 수학, 동적프로그래밍, 탐욕, 그래프
 * Class   : 성 + 문제번호
 EX) Hwang1463
 * 입출력 : Scanner()를 이용하거나, BufferedReader/Writer를 이용하거나 자율
-[참고] Lim10950.class을 참고하여 커밋을 하면 
+* [참고] Lim10950.class을 참고하여 커밋
 
 
 ## Clone
