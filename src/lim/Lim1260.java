@@ -2,12 +2,15 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Lim1260 {
 	
-	static List<Integer> result;
+	static boolean[] visitRec;
+	static Queue<Integer> queue = new LinkedList<Integer>();
+	static StringBuffer dfs = new StringBuffer();
+	static StringBuffer bfs = new StringBuffer();
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,61 +27,52 @@ public class Lim1260 {
 			int x = Integer.parseInt(lineInfo[0]);
 			int y = Integer.parseInt(lineInfo[1]);
 			
-			matrix[x][y] = 1;
-			matrix[y][x] = 1;
+			if(x != y) {
+				matrix[x][y] = 1;
+				matrix[y][x] = 1;
+			}		
 		}
 		
-//		for(int i = 0; i < matrix.length; i++) {
-//			System.out.println(Arrays.toString(matrix[i]));
-//		}
-		
-		result = new ArrayList<Integer>(nDot);
+		visitRec = new boolean[nDot + 1];
 		dfsMethod(matrix, start);
 		
-		StringBuffer dfs = new StringBuffer();
-		result.forEach(el -> dfs.append(el + " "));
+		visitRec = new boolean[nDot + 1];
+		visitRec[start] = true;
+		queue.add(start);
+		bfs.append(start + " ");
+		bfsMethod(matrix);
 		
-		result = new ArrayList<Integer>(nDot);
-		result.add(start);
-		bfsMethod(matrix, start);
-		
-		StringBuffer bfs = new StringBuffer();
-		result.forEach(el -> bfs.append(el + " "));
-		
-		System.out.println(dfs.toString().trim());
-		System.out.println(bfs.toString().trim());
+		System.out.println(dfs);
+		System.out.println(bfs);
 	}
 	
-	private static void bfsMethod(int[][] matrix, int start) {
-
-		int[] paths = matrix[start];
-		List<Integer> nearNum = new ArrayList<>();
-		
-		for(int i = 1; i < paths.length; i++) {
+	private static void dfsMethod(int[][] matrix, int start) {
+		dfs.append(start + " ");
+		visitRec[start] = true;
+				
+		for(int i = 1; i < matrix[start].length; i++) {
 			
-			if(!result.contains(i) && paths[i] == 1) {
-				result.add(i);
-				nearNum.add(i);
-			}
-		}
-		
-		if(nearNum.size() > 0) {
-			for(int e : nearNum) {
-				bfsMethod(matrix, e);
-			}
-		}	
-	}
-
-	public static void dfsMethod(int[][] matrix, int start) {
-		result.add(start);
-
-		int[] paths = matrix[start];
-		
-		for(int i = 1; i < paths.length; i++) {
-			
-			if(!result.contains(i) && paths[i] == 1) {
+			if(visitRec[i] == false && matrix[start][i] == 1) {
 				dfsMethod(matrix, i);
 			}
 		}
+	}
+	
+	private static void bfsMethod(int[][] matrix) {
+				
+		while(!queue.isEmpty()) {
+			
+			int start = queue.poll();
+			
+			for(int i = 1; i < matrix[start].length; i++) {
+				
+				if(visitRec[i] == false && matrix[start][i] == 1) {
+					visitRec[i] = true;
+					queue.add(i);
+					bfs.append(i + " ");
+				}
+			}
+		}
+		
 	}
 }
