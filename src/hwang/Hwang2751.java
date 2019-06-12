@@ -16,10 +16,10 @@ public class Hwang2751 {
 
     static int N ;
     public static void main(String[] args) throws IOException {
-        BufferedReader br  = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(System.out));
-        N                  = Integer.parseInt(br.readLine());
-        List<Integer> list = new LinkedList<Integer>();
+        BufferedReader br   = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw   = new BufferedWriter(new OutputStreamWriter(System.out));
+        N                   = Integer.parseInt(br.readLine());
+        List<Integer>  list = new LinkedList<Integer>();
 
         while(N-->0) {
             list.add(Integer.parseInt(br.readLine()));
