@@ -7,35 +7,27 @@ public class Lim11726 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		long answer = 0;
-		int q = n / 2;
-		int r = n % 2;
-				
-		for(int i = q ; i >= 0; i--) {
-			answer += multiplyUntil(i + r, i) / factorial(r);
-			r = r + 2;
-		}
-		
-		System.out.println(answer % 10007);
+		solution(n);
 	}
 	
-	private static long factorial(int n) {
-		long ret = 1;
+	private static void solution(int n) {
+		if(n == 1) {
+			System.out.println("1");
+			return;
+		} 
 		
-		while(n != 1 && n != 0) {
-			ret *= n--;
+		int[] arr = new int[n];
+		arr[0] = 1;
+		arr[1] = 2;
+		
+		for(int i = 2; i < n; i++) {
+			arr[i] = arr[i - 1] + arr[i - 2];
+			
+			if(arr[i] >= 10007) {
+				arr[i] %= 10007;
+			}
 		}
 		
-		return ret;
-	}
-	
-	private static long multiplyUntil(int a, int b) {
-		long ret = 1;
-		
-		while(a > b) {
-			ret *= a--;
-		}
-		
-		return ret;
+		System.out.println(arr[n - 1]);
 	}
 }

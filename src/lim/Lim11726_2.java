@@ -4,30 +4,38 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Lim11726_2 {
-	
-	private static int n;
-	private static int answer = 0;
-	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		n = Integer.parseInt(br.readLine());	
-		
-		for(int i = 1; i <= 2; i++) {
-			add(i, 0);
+		int n = Integer.parseInt(br.readLine());
+		long answer = 0;
+		int q = n / 2;
+		int r = n % 2;
+				
+		for(int i = q ; i >= 0; i--) {
+			answer += multiplyUntil(i + r, i) / factorial(r);
+			r = r + 2;
 		}
 		
 		System.out.println(answer % 10007);
 	}
 	
-	private static void add(int a, int b) {
-		int sum = a + b;
+	private static long factorial(int n) {
+		long ret = 1;
 		
-		if(sum < n) {
-			for(int i = 1; i <= 2; i++) {
-				add(i, sum);
-			}
-		} else if(sum == n) {
-			answer++;
-		} 
+		while(n != 1 && n != 0) {
+			ret *= n--;
+		}
+		
+		return ret;
+	}
+	
+	private static long multiplyUntil(int a, int b) {
+		long ret = 1;
+		
+		while(a > b) {
+			ret *= a--;
+		}
+		
+		return ret;
 	}
 }
