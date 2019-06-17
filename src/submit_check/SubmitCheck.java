@@ -19,8 +19,8 @@ public class SubmitCheck {
 		List<Integer> week_02 = Arrays.asList(11021, 11022, 11718, 11719, 11720, 11721, 2741, 2742, 2739, 1924, 8393, 10818, 2438, 2439);
 		questionNo.addAll(week_02);
 		
-		List<Integer> week_03 = Arrays.asList(2440, 2441, 2442, 2445, 2522, 2446, 10991, 10992, 11726, 11727, 9095, 10844, 11057);
-		questionNo.addAll(week_03);
+//		List<Integer> week_03 = Arrays.asList(2440, 2441, 2442, 2445, 2522, 2446, 10991, 10992, 11726, 11727, 9095, 10844, 11057);
+//		questionNo.addAll(week_03);
 		
 		submitCheck(questionNo, participants);
 	}
