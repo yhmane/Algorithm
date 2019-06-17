@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-효율성 좋은 예시 이해 필요
-public class Lim11724 {
+public class _Lim11724 {
 	
 	static boolean[] visitRec;
 	
