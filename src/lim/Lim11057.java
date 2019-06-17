@@ -2,9 +2,7 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
-//TODO 효율성 문제 해결 필요
 public class Lim11057 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,7 +25,12 @@ public class Lim11057 {
 			}
 		}
 		
-		System.out.println(Arrays.stream(cnt).sum() % 10007);
+		long sum = 0;
 		
+		for(long a : cnt) {
+			sum += a;
+		}
+		
+		System.out.println(sum % 10007);
 	}
 }
