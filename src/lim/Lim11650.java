@@ -2,27 +2,25 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Lim11650 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		List<Point> list = new LinkedList<Point>();
+		Queue<Point> queue = new PriorityQueue<>();
 		StringBuffer sb = new StringBuffer();
-		
+
 		for(int i = 0; i < n; i++) {
-			String[] points = br.readLine().split(" ");
-			Point p = new Point(Integer.parseInt(points[0]), Integer.parseInt(points[1]));
-			list.add(p);
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			Point p = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+			queue.offer(p);
 		}
 		
-		list.sort(Comparator.naturalOrder());
-		
-		for(Point p : list) {
-			sb.append(p + "\n");
+		while(!queue.isEmpty()) {
+			sb.append(queue.poll() + "\n");
 		}
 		
 		System.out.println(sb);
