@@ -2,8 +2,8 @@ package lim;
 
 public class MemoryTest {
 	public static void main(String[] args) throws Exception {
-		int[] asdf = new int[10000];
-		int[] sdfg = new int[100000000];
+//		int[] asdf = new int[10000];
+//		int[] sdfg = new int[100000000];
 		
 		Runtime runtime = Runtime.getRuntime();
 		long mb = 1024 * 1024;
