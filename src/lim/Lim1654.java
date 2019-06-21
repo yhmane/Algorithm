@@ -23,37 +23,22 @@ public class Lim1654 {
 		long left = 0;
 		long right = answer;
 				
-		while(true) {
+		while(left <= right) {
 			int cnt = 0;
 			
 			for(int i = 0; i < k; i++) {
 				cnt += lineArr[i] / answer;
 			}
-						
-			if(cnt > n) {
+					
+			if(cnt >= n) {
 				left = answer + 1;
-				if(left > right) break;
 			} else if(cnt < n) {
 				right = answer - 1;
-			} else {
-				break;
-			}
+			} 
 			
 			answer = (left + right) / 2;
 		}
-					
-		while(true) {
-			int cnt = 0;
-			
-			answer++;
-			
-			for(int i = 0; i < k; i++) {
-				cnt += lineArr[i] / answer;
-			}
-			
-			if(cnt < n) break;
-		}
-		
-		System.out.println(--answer);		
+				
+		System.out.println(answer);	
 	}
 }
