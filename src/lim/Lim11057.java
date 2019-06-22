@@ -3,23 +3,26 @@ package lim;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Lim10844 {
+public class Lim11057 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		long[] cnt = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+		long[] cnt = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 		
 		for(int i = 0; i < n - 1; i++) {
 			long[] tmp = new long[10];
-			tmp[0] = cnt[1] % 1_000_000_000;
 			
-			for(int j = 1; j < 9; j++) {
-				tmp[j] = (cnt[j - 1] + cnt[j + 1]) % 1_000_000_000;
+			for(int j = 0; j < 10; j++) {
+				for(int k = j; k < 10; k++) {
+					tmp[k] += cnt[j];
+				}
 			}
-			
-			tmp[9] = cnt[8] % 1_000_000_000;
-			
+						
 			cnt = tmp;
+			
+			for(int k = 0; k < 10; k++) {
+				cnt[k] %= 10007;
+			}
 		}
 		
 		long sum = 0;
@@ -28,6 +31,6 @@ public class Lim10844 {
 			sum += a;
 		}
 		
-		System.out.println(sum % 1_000_000_000);
+		System.out.println(sum % 10007);
 	}
 }
