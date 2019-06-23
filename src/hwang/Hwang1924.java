@@ -19,7 +19,7 @@ public class Hwang1924 {
         int    month  = Integer.parseInt(input[0]);
 
         int tot = 0;
-        for(int i=0; i<month; i++) {
+        for(int i=1; i<month; i++) {
             tot += days[i];
         }
         tot+= Integer.parseInt(input[1]);
