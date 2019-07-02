@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SubmitCheck {
-		
-	public static void main(String[] args) {
+	
+	static int totalQuestionCNT = 146;
+	
+	public static void main(String[] args) throws Exception {
 		
 		List<Integer> questionNo = new ArrayList<Integer>();
 		List<String> participants = Arrays.asList("hong|홍대표", "hwang|황윤호", "ju|주홍선", "koo|구해안", "lee|이석화", "lim|임민석");
@@ -24,12 +26,12 @@ public class SubmitCheck {
 		
 		List<Integer> week_04 = Arrays.asList(2193, 9465, 2156, 11053, 11055, 11722, 11054, 1912, 2579, 1699, 2133, 9461, 2225, 2011, 11052);
 		questionNo.addAll(week_04);
-		
+			
 		duplicateCheck(questionNo);
-		
-		submitCheck(questionNo, participants);
+		System.out.println("★ 목표 진행률 : " + checkProgress(questionNo.size()) + ", 남은 문제 수 : " + (totalQuestionCNT - questionNo.size()));
+		System.out.println();
+		submitCheck(questionNo, participants);		
 	}
-	
 	private static void submitCheck(List<Integer> questionNo, List<String> participants) {
 		
 		String currDir = System.getProperty("user.dir");
@@ -47,19 +49,25 @@ public class SubmitCheck {
 			
 			notSolved.removeAll(solved);
 			
-			System.out.println(pInfo[1] + " - 푼 문제  수: " + solved.size() + ", 풀지 않은 문제 수 : " + notSolved.size());
+			System.out.println(pInfo[1] + " - 푼 문제  수: " + solved.size() + ", 풀지 않은 문제 수 : " + notSolved.size() 
+					+ " (현재 진행률 : "+ checkProgress(solved.size()) + ")");
 //			System.out.println("푼 문제 목록 : " + solved);
 			System.out.println("풀지 않은 문제 목록 : " + notSolved);
 			System.out.println();
 		});
 	}
 	
-	private static void duplicateCheck(List<Integer> questionNo) {
+	private static void duplicateCheck(List<Integer> questionNo) throws Exception {
 		int listSize = questionNo.size();
 		long filteredSize = questionNo.stream().distinct().count();
 		
 		if(listSize != filteredSize) {			
-			System.out.println("추가된 문제에서 중복된 항목이 있습니다.");
+			throw new Exception("추가된 문제에서 중복된 항목이 있습니다.");
 		}
+	}
+	
+	private static String checkProgress(int size) {
+		double progress = (size * 10000 / totalQuestionCNT) / 100.0;
+		return progress + " %";
 	}
 }
