@@ -17,11 +17,11 @@ public class Lim9465 {
 			StringTokenizer st0 = new StringTokenizer(br.readLine());
 			StringTokenizer st1 = new StringTokenizer(br.readLine());
 			
-			for(int j= 0; j < n; j++) {
+			for(int j = 0; j < n; j++) {
 				scores[0][j] = Integer.parseInt(st0.nextToken());
 			}
 			
-			for(int j= 0; j < n; j++) {
+			for(int j = 0; j < n; j++) {
 				scores[1][j] = Integer.parseInt(st1.nextToken());
 			}
 			
