@@ -1,44 +1,36 @@
 package hong;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.Scanner;
 
 public class Hong2445 {
 	public Hong2445() {}
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
-		int caseNum  = Integer.parseInt(br.readLine());
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int caseNum  = sc.nextInt();
+		char[] charArr = new char[2 * caseNum];
+		int left = -1;
+		int right = charArr.length;
 		
-		for(int i = 0; i < 2 * caseNum - 1; i++) {
-			if(i < caseNum) {
-				for (int j = 0; j < 2 * caseNum - 1 - i; j++) {
-					if(j < i) {
-						sb.append(" ");
-					} else {
-						sb.append("*");
-					}
-				}
-				sb.append("\n");
-			} else {
-				for (int j = 0; j <= i; j++) {
-					if(j < 2 * (caseNum - 1) - i) {
-						sb.append(" ");
-					} else {
-						sb.append("*");
-					}
-				}
-				sb.append("\n");
-				
-			}
+		for(int i = 0; i < charArr.length; i++) {
+			charArr[i] = ' ';
 		}
-		bw.append(sb);
-		bw.flush();
 		
+		for (int i = 0; i < 2 * caseNum - 1; i++) {
+			if(i > caseNum - 1) {
+				charArr[left] = ' ';
+				charArr[right] = ' ';
+				left--;
+				right++;
+				
+			} else {
+				left++;
+				right--;
+				charArr[left] = '*';
+				charArr[right] = '*';
+			}
+			
+			System.out.println(String.valueOf(charArr));
+		}
 	}
 }
