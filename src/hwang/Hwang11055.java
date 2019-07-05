@@ -21,7 +21,7 @@ public class Hwang11055 {
             arr[i] = Integer.parseInt(input[i]);
         }
 
-        int max=1; dp[0]=arr[0];
+        int max=arr[0]; dp[0]=arr[0];
         for(int i=1; i<arrCnt; i++) {
             dp[i]=arr[i];
             for(int j=0; j<i; j++) {
