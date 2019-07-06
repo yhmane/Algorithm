@@ -2,10 +2,9 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Lim2225 {
+public class Lim2225 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());		
@@ -18,19 +17,22 @@ public class _Lim2225 {
 		for(int i = 1; i < k; i++) {
 		
 			long[] tmp = new long[n + 1];
+			tmp[n] = 1;
 			
-			for(int j = 0; j <= n; j++) {
-				
-				for(int h = j; h <= n; h++) {
-					tmp[j] += cnt[h];
-				}
-				
+			for(int j = n - 1; j >= 0; j--) {
+				tmp[j] = tmp[j + 1] + cnt[j];
 				tmp[j] %= 1_000_000_000;
 			}
 			
 			cnt = tmp;
 		}
+				
+		long sum = 0;
 		
-		System.out.println(Arrays.stream(cnt).sum());
+		for(int i = 0; i < cnt.length; i++) {
+			sum += cnt[i];
+		}
+		
+		System.out.println(sum % 1_000_000_000);
 	}
 }
