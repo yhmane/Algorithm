@@ -4,58 +4,75 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class _Lim2011 {
+	private static long[] fibo = new long[5001];
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = br.readLine();
-		int[] numbers = new int[input.length() + 2];
-		numbers[1] = input.charAt(0) - 48;
 		
-		if(numbers[1] == 0) {
+		if(input.charAt(0) == '0') {
 			System.out.println(0);
 			return;
 		}
 		
-		for(int i = 2; i <= input.length(); i++) {
-			numbers[i] = input.charAt(i - 1) - 48;
-		}
+		int n = input.length();
+		int[] arr = new int[n + 1];
+		arr[0] = input.charAt(0) - 48;
 		
-		int cnt = 1;
-		int compV = 1;
-		
-		for(int i = 1; i <= input.length(); i++) {
-			switch (numbers[i]) {
-			case 0:
-				if(numbers[i - 1] != 1 && numbers[i - 1] != 2) {
+		for(int i = 1, j = 1; i < n; i++) {
+			int x = input.charAt(i) - 48;
+			
+			if(x == 0) {
+				if(arr[j - 1] == 1 || arr[j - 1] == 2) {
+					arr[j - 1] *= 10; 
+				} else {
 					System.out.println(0);
 					return;
 				}
-				break;
-			case 1:
-				if(numbers[i + 1] != 0) {
-					if(numbers[i - 1] == 1 || numbers[i - 1] == 2) {
-						cnt += compV;
-						compV *= 2;
-					} else {
-						compV = cnt;
-						cnt *= 2;
-					}
-				}
-				
-				break;
-			case 2:	
-				if(numbers[i + 1] >= 1 && numbers[i + 1] <= 6) {
-					if(numbers[i - 1] == 1 || numbers[i - 1] == 2) {
-						cnt += compV;
-						compV *= 2;
-					} else {
-						compV = cnt;
-						cnt *= 2;
-					}
-				} 
-				break;					
+			} else {
+				arr[j++] = x;
 			}
 		}
 		
+		
+		int[] arr2 = new int[n + 1];
+		arr2[0] = arr[0];
+		
+		for(int i = 0, j = 0; arr[i + 1] != 0; i++) {
+			
+			if((arr[i] == 1 || arr[i] == 2) && arr[i + 1] < 10) {
+				arr2[j] = arr2[j] * 10 + arr[i + 1];
+			} else {
+				arr2[++j] = arr[i + 1];
+			}
+		}
+		
+		
+		int cnt = 1;
+		int i = 0;
+		
+		while(arr2[i] != 0) {
+			if(arr2[i] > 10 && arr2[i] != 20) {
+				cnt *= fibonacci(String.valueOf(arr2[i]).length()); 
+			}
+			
+			i++;
+		}
+		
 		System.out.println(cnt);
+	}
+	
+	private static long fibonacci(int n) {
+		if(fibo[n] != 0) {
+			return fibo[n];
+		}
+		
+		if(n == 0 || n == 1) {
+			fibo[n] = 1;		
+		} else {
+			fibo[n] = fibonacci(n - 1) + fibonacci(n - 2);
+		}	
+		
+		return fibo[n];
 	}
 }
