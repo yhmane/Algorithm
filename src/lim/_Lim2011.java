@@ -59,7 +59,7 @@ public class _Lim2011 {
 			i++;
 		}
 		
-		System.out.println(cnt);
+		System.out.println(cnt % 1000000);
 	}
 	
 	private static long fibonacci(int n) {
