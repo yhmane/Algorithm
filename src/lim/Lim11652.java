@@ -7,11 +7,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class _Lim11652 {
+public class Lim11652 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		Map<Long, Integer> map = new HashMap<Long, Integer>(); 
+		Map<Long, Integer> map = new HashMap<Long, Integer>();
 		
 		for(int i = 0; i < n; i++) {
 			Long x = Long.parseLong(br.readLine());
@@ -29,7 +29,7 @@ public class _Lim11652 {
 		while(it.hasNext()) {
 			Entry<Long, Integer> tmp = it.next();
 			
-			if(max.getValue() < tmp.getValue() || (max.getValue() == tmp.getValue() && max.getKey() > tmp.getKey())) {
+			if(max.getValue() < tmp.getValue() || (max.getValue().equals(tmp.getValue()) && max.getKey() > tmp.getKey())) {
 				max = tmp;
 			} 
 		}
