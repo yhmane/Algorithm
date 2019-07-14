@@ -11,7 +11,7 @@ public class _Lim11652 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		Map<Long, Integer> map = new HashMap<Long, Integer>();
+		Map<Long, Integer> map = new HashMap<Long, Integer>(); 
 		
 		for(int i = 0; i < n; i++) {
 			Long x = Long.parseLong(br.readLine());
