@@ -48,7 +48,7 @@ public class _Lim2011 {
 		}
 		
 		
-		int cnt = 1;
+		long cnt = 1;
 		int i = 0;
 		
 		while(arr2[i] != 0) {
