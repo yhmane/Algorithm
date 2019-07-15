@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
  */
 public class Hwang1699 {
 
+    // 예외 케이스 12 ...
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
