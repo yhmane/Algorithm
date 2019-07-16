@@ -13,7 +13,7 @@ public class SubmitCheck {
 	public static void main(String[] args) throws Exception {
 		
 		List<Integer> questionNo = new ArrayList<Integer>();
-		List<String> participants = Arrays.asList("hong|홍대표", "hwang|황윤호", "ju|주홍선", "koo|구해안", "lee|이석화", "lim|임민석");
+		List<String> participants = Arrays.asList("hong|홍대표", "hwang|황윤호", "ju|주홍선", /* "koo|구해안", "lee|이석화", */ "lim|임민석");
 						
 		List<Integer> week_01 = Arrays.asList(2557, 1000, 2558, 10950, 10951, 10952, 1463, 2751, 1260);
 		questionNo.addAll(week_01);
