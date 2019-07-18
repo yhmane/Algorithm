@@ -53,6 +53,8 @@ public class ProgressCheck {
 		
 		System.out.println("★ " + user + " - 푼 문제 수 : " + questionCNT + ", 풀지 않은 문제 수 : " + (InitData.getTotalQuestionCNT() - questionCNT)
 					  + " (현재 진행률 : "+ checkProgress(questionCNT) + ")");
+		System.out.println();
+		System.out.println("------ 풀지 않은 문제 목록 ------");
 		System.out.println(sb);
 	}
 	
