@@ -2,48 +2,43 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _Lim10845 {
+public class Lim10866 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		Queue<String> queue = new LinkedList<String>();
-		String last = null;
+		Deque<String> deque = new LinkedList<>();
 		
 		for(int i = 0; i < n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			String cmd = st.nextToken();
 			
-			try {			
-				if("push".equals(cmd)) {
-					last = st.nextToken();
-					queue.add(last);
-				} else if("pop".equals(cmd)) {
-					System.out.println(queue.remove());
+			try {
+				if("push_front".equals(cmd)) {
+					deque.addFirst(st.nextToken());
+				} else if("push_back".equals(cmd)) {
+					deque.addLast(st.nextToken());
+				} else if("pop_front".equals(cmd)) {
+					System.out.println(deque.removeFirst());
+				} else if("pop_back".equals(cmd)) {
+					System.out.println(deque.removeLast());
 				} else if("size".equals(cmd)) {
-					System.out.println(queue.size());
+					System.out.println(deque.size());
 				} else if("empty".equals(cmd)) {
-					if(queue.isEmpty()) {
-						System.out.println("1");
-					} else {
-						System.out.println("0");
-					}
+					System.out.println(deque.isEmpty() ? 1 : 0);
 				} else if("front".equals(cmd)) {
-					System.out.println(queue.element());
+					System.out.println(deque.getFirst());
 				} else {
-					if(queue.isEmpty()) {
-						throw new NoSuchElementException();
-					} else {
-						System.out.println(last);
-					}
+					System.out.println(deque.getLast());
 				}
 			} catch (NoSuchElementException e) {
 				System.out.println("-1");
 			}
-		}		
+			
+		}
 	}
 }

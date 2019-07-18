@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 다시 풀 때 디버깅하면서 주석달자. 또 이거에 시간 뺏기기 싫다...;
 public class Lim2225 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
