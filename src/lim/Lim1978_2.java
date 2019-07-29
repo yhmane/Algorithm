@@ -5,8 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-// 상위권 문제해결법에 대한 수학적 이해 또는 증명 필요
-public class _Lim1978_2 {
+public class Lim1978_2 {
 	private static List<Integer> primeNumbers = new ArrayList<Integer>();
 	
 	public static void main(String[] args) throws Exception {
@@ -46,6 +45,11 @@ public class _Lim1978_2 {
 			boolean prime = true;
 			
 			for(int n : primeNumbers) {
+				
+				// 이 부분이 추가될 수 있는 이유에 대한 수학적 증명이나 이해가 필요할 듯
+				if(i < n * n) {
+					break;
+				}
 				
 				if(i % n == 0) {
 					prime = false;
