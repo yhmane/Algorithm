@@ -42,23 +42,30 @@ public class ProgressCheck {
 		StringBuffer sb = new StringBuffer();
 		String familyNM = participantInfo.get(user);
 		File directory = new File(currDir + File.separator + "src" + File.separator + familyNM);
-		List<String> solved = Arrays.stream(directory.list()).map(fileNm -> fileNm.substring(familyNM.length(), fileNm.lastIndexOf('.'))).collect(Collectors.toList());
-		int questionCNT = InitData.getTotalQuestionCNT();
+		List<String> solved = Arrays.stream(directory.list()).map(fileNm -> fileNm.substring(familyNM.length(), fileNm.lastIndexOf('.'))).collect(Collectors.toList());		
+		int solvedCNT = getUnsolvedList(sb, solved);
 		
-		for(Entry<String, List<Integer>> e : InitData.getTotalQuestions().entrySet()) {
-			List<String> notSolved = e.getValue().stream().map(String::valueOf).filter(x -> !solved.contains(x)).collect(Collectors.toList());
-			questionCNT -= notSolved.size();
-			sb.append(e.getKey() + " : " + notSolved + "\n");
-		}
-		
-		System.out.println("★ " + user + " - 푼 문제 수 : " + questionCNT + ", 풀지 않은 문제 수 : " + (InitData.getTotalQuestionCNT() - questionCNT)
-					  + " (현재 진행률 : "+ checkProgress(questionCNT) + ")");
+		System.out.println("★ " + user + " - 푼 문제 수 : " + solvedCNT + ", 풀지 않은 문제 수 : " + (InitData.getTotalQuestionCNT() - solvedCNT)
+					  + " (현재 진행률 : "+ checkProgress(solvedCNT) + ")");
 		System.out.println();
 		System.out.println("------ 풀지 않은 문제 목록 ------");
 		System.out.println(sb);
 	}
+
+	public static int getUnsolvedList(StringBuffer sb, List<String> solved) {
+		
+		int solvedCNT = InitData.getTotalQuestionCNT();
+		
+		for(Entry<String, List<Integer>> e : InitData.getTotalQuestions().entrySet()) {
+			List<String> notSolved = e.getValue().stream().map(String::valueOf).filter(x -> !solved.contains(x)).collect(Collectors.toList());
+			solvedCNT -= notSolved.size();
+			sb.append(e.getKey() + " : " + notSolved + "\n");
+		}
+		
+		return solvedCNT;
+	}
 	
-	private static String checkProgress(int size) {
+	public static String checkProgress(int size) {
 		double progress = (size * 10000 / InitData.getTotalQuestionCNT()) / 100.0;
 		return progress + " %";
 	}
