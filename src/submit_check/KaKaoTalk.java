@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class KaKaoTalk {
 	
 	public static void main(String[] args) throws Exception {
-		String filePath = "C:\\KakaoTalk_20190731_1704_04_337_group.txt";
+		String filePath = "C:\\bizmekaTalk_Group_2019_08_01_105619.txt";
 		File file = new File(filePath);
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		Map<String, Integer> participants = new HashMap<String, Integer>();
@@ -26,6 +26,10 @@ public class KaKaoTalk {
 //				totalTalkCNT++;
 				String name = talk.substring(1, talk.indexOf(']'));
 				
+				if("".equals(name) || name.matches("^(A|P)M [0-1]?[0-9]:[0-5][0-9]")) {				
+					continue;
+				}
+									
 				if(!participants.containsKey(name)) {
 					participants.put(name, 1);
 				} else {
