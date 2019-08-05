@@ -34,6 +34,9 @@ public class SubmitCheck {
 								1978, 1929, 6588, 11653, 10872, 1676, 2004);
 		questionNo.addAll(week_06);
 		
+		List<Integer> week_07 = Arrays.asList(11724, 1707, 10451, 2331, 9466, 2667, 4963, 7576, 2178, 2146, 1991, 11725, 1167, 1967);
+		questionNo.addAll(week_07);
+
 		duplicateCheck(questionNo);
 		System.out.println("★ 목표 진행률 : " + checkProgress(questionNo.size()) + ", 남은 문제 수 : " + (InitData.getTotalQuestionCNT() - questionNo.size()));
 		System.out.println();
