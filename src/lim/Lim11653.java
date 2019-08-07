@@ -4,16 +4,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _Lim11653 {
+public class Lim11653 {
 	private static int testLimit = 3162;
 	private static int[] primeNumbers = new int[446];
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		getPrimeNumbers();
+		StringBuffer sb = new StringBuffer();
+		getPrimeNumbers();		
 		
-				
+		for(int x : primeNumbers) {
+			if(n < x * x) {
+				break;
+			}
+			
+			while(n % x == 0) {
+				sb.append(x + "\n");
+				n /= x;
+			}
+		}
+		
+		if(n != 1) {
+			sb.append(n);
+		}
+		
+		
+		System.out.println(sb);
 	}
 	
 	private static void getPrimeNumbers() {
