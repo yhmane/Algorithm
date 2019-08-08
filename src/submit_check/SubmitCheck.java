@@ -1,9 +1,12 @@
 package submit_check;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -57,10 +60,20 @@ public class SubmitCheck {
 							.filter(notSolved::contains)
 							.collect(Collectors.toList());
 			
+			File[] files = directory.listFiles();
+			long lastModified = files[0].lastModified();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			
+			for(int i = 1; i < files.length; i++) {
+				if(files[i].lastModified() > lastModified) {
+					lastModified = files[i].lastModified();
+				}
+			}
+			
 			notSolved.removeAll(solved);
 			
 			System.out.println(p + " - 푼 문제  수 : " + solved.size() + ", 풀지 않은 문제 수 : " + notSolved.size() 
-					+ " (현재 진행률 : "+ checkProgress(solved.size()) + ")");
+					+ " (현재 진행률 : "+ checkProgress(solved.size()) + ") - 최종 수정일 : " + df.format(new Date(lastModified)));
 //			System.out.println("푼 문제 목록 : " + solved);
 			System.out.println("풀지 않은 문제 목록 : " + notSolved);
 			System.out.println();
