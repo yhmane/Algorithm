@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class InitData {
 	
-	private static List<String> participants = Arrays.asList("hong|홍대표", "hwang|황윤호", "ju|주홍선", "koo|구해안", "lee|이석화", "lim|임민석");
+	private static List<String> participants = Arrays.asList("hong|홍대표", "hwang|황윤호", /*"ju|주홍선", "koo|구해안", "lee|이석화",*/ "lim|임민석");
 	
 	// 입출력
 	private static List<Integer> ioList = Arrays.asList(2557, 1000, 2558, 10950, 10951, 10952, 11021, 11022, 11718, 11719, 11720, 11721, 2741, 2742, 
