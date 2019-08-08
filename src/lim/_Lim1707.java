@@ -2,12 +2,15 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class _Lim1707 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int tCase = Integer.parseInt(br.readLine());
+		StringBuffer sb = new StringBuffer();
 		
 		for(int i = 0; i < tCase; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -30,21 +33,43 @@ public class _Lim1707 {
 			int idx;
 			
 			while((idx = findRemainIdx(visit)) != -1) {
-				dfsMethod(matrix, visit, idx);
+				method(matrix, visit, idx);
 				cnt++;
 			}
 			
-			System.out.println(cnt);
+			if(cnt > 2) {
+				sb.append("NO\n");
+			} else {
+				sb.append("YES\n");
+			}
 		}
+		
+		System.out.println(sb);
 	}
 	
-	private static void dfsMethod(boolean[][] matrix, boolean[] visit, int s) {
+	private static void method(boolean[][] matrix, boolean[] visit, int s) {
 		visit[s] = true;
+		List<Integer> tmp = new ArrayList<Integer>();
+		tmp.add(s);
 		
 		for(int i = 1; i < matrix[s].length; i++) {
 			
-			if(!visit[i] && !matrix[s][i]) {
-				dfsMethod(matrix, visit, i);
+			if(!visit[i]) {
+				
+				boolean canVisit = true;
+				
+				for(int x : tmp) {
+					
+					if(matrix[x][i]) {
+						canVisit = false;
+						break;
+					}
+				}
+				
+				if(canVisit) {
+					visit[i] = true;
+					tmp.add(i);
+				}
 			}
 		}
 	}
