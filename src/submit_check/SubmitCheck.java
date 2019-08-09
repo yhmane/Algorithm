@@ -14,9 +14,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SubmitCheck {		
-	public static void main(String[] args) throws Exception {	
-		List<Integer> questionNo = new ArrayList<Integer>();
-						
+	private static List<Integer> questionNo = new ArrayList<Integer>();
+	
+	static {
 		List<Integer> week_01 = Arrays.asList(2557, 1000, 2558, 10950, 10951, 10952, 1463, 2751, 1260);
 		questionNo.addAll(week_01);
 		
@@ -39,7 +39,9 @@ public class SubmitCheck {
 		
 		List<Integer> week_07 = Arrays.asList(11724, 1707, 10451, 2331, 9466, 2667, 4963, 7576, 2178, 2146, 1991, 11725, 1167, 1967);
 		questionNo.addAll(week_07);
-
+	}
+	
+	public static void main(String[] args) throws Exception {					
 		duplicateCheck(questionNo);
 		System.out.println("★ 목표 진행률 : " + checkProgress(questionNo.size()) + ", 남은 문제 수 : " + (InitData.getTotalQuestionCNT() - questionNo.size()));
 		System.out.println();
@@ -101,5 +103,9 @@ public class SubmitCheck {
 	private static String checkProgress(int size) {
 		double progress = (size * 10000 / InitData.getTotalQuestionCNT()) / 100.0;
 		return progress + " %";
+	}
+
+	public static List<Integer> getQuestionNo() {
+		return questionNo;
 	}
 }
