@@ -2,8 +2,6 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class _Lim1707 {
@@ -18,8 +16,8 @@ public class _Lim1707 {
 			int e = Integer.parseInt(st.nextToken());
 			int cnt = 0;
 			
-			boolean[][] matrix = new boolean[v + 1][v + 1];
 			boolean[] visit = new boolean[v + 1];
+			boolean[][] matrix = new boolean[v + 1][v + 1];
 			
 			for(int j = 0; j < e; j++) {
 				st = new StringTokenizer(br.readLine());
@@ -49,8 +47,9 @@ public class _Lim1707 {
 	
 	private static void method(boolean[][] matrix, boolean[] visit, int s) {
 		visit[s] = true;
-		List<Integer> tmp = new ArrayList<Integer>();
-		tmp.add(s);
+		int[] tmp = new int[20000];
+		int idx = 0;
+		tmp[idx++] = s;
 		
 		for(int i = 1; i < matrix[s].length; i++) {
 			
@@ -58,9 +57,9 @@ public class _Lim1707 {
 				
 				boolean canVisit = true;
 				
-				for(int x : tmp) {
+				for(int j = 0; tmp[j] != 0 && j < tmp.length; j++) {
 					
-					if(matrix[x][i]) {
+					if(matrix[tmp[j]][i]) {
 						canVisit = false;
 						break;
 					}
@@ -68,7 +67,7 @@ public class _Lim1707 {
 				
 				if(canVisit) {
 					visit[i] = true;
-					tmp.add(i);
+					tmp[idx++] = i;
 				}
 			}
 		}
