@@ -2,15 +2,13 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
-public class _Lim2146 {
+public class Lim2146 {
 	private static int[] di = {1, 0, -1, 0};
 	private static int[] dj = {0, 1, 0, -1};
-	private static List<Integer> list = new ArrayList<Integer>();
+	private static int min = Integer.MAX_VALUE;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -61,15 +59,6 @@ public class _Lim2146 {
 			}
 		}
 		
-		int min = list.get(0);
-		
-		for(int i = 1; i < list.size(); i++) {
-			
-			if(min > list.get(i)) {
-				min = list.get(i);
-			}
-		}
-		
 		System.out.println(min);
 	}
 
@@ -94,17 +83,37 @@ public class _Lim2146 {
 						continue;
 					}
 					
-					if(!map[nextI][nextJ]) {
+					if(!map[nextI][nextJ] && !visit[nextI][nextJ]) {
 						visit[nextI][nextJ] = true;
 						queue.add(new Point(nextI, nextJ));
-					} else if(newMap[nextI][nextJ] != currentColor) {
-						list.add(cnt);
+					} else if(map[nextI][nextJ] && newMap[nextI][nextJ] != currentColor) {
+						if(min > cnt) {
+							min = cnt;
+						}
 						break outer;
 					}
 				}
 			}
 			
 			cnt++;
+		}
+	}
+	
+	private static void colorMap(boolean[][] map, int[][] newMap, boolean[][] visit, int i, int j, int color, int n) {
+		visit[i][j] = true;
+		newMap[i][j] = color;
+		
+		for(int k = 0; k < 4; k++) {
+			int nextI = i + di[k];
+			int nextJ = j + dj[k];
+			
+			if(nextI >= n || nextI < 0 || nextJ >= n || nextJ < 0) {
+				continue;
+			}
+			
+			if(!visit[nextI][nextJ] && map[nextI][nextJ]) {
+				colorMap(map, newMap, visit, nextI, nextJ, color, n);
+			}
 		}
 	}
 	
@@ -123,24 +132,6 @@ public class _Lim2146 {
 
 		public int getJ() {
 			return j;
-		}
-	}
-
-	private static void colorMap(boolean[][] map, int[][] newMap, boolean[][] visit, int i, int j, int color, int n) {
-		visit[i][j] = true;
-		newMap[i][j] = color;
-		
-		for(int k = 0; k < 4; k++) {
-			int nextI = i + di[k];
-			int nextJ = j + dj[k];
-			
-			if(nextI >= n || nextI < 0 || nextJ >= n || nextJ < 0) {
-				continue;
-			}
-			
-			if(!visit[nextI][nextJ] && map[nextI][nextJ]) {
-				colorMap(map, newMap, visit, nextI, nextJ, color, n);
-			}
 		}
 	}
 }
