@@ -2,13 +2,11 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _Lim2178_2 {
+public class Lim2178 {
 	private static int[] di = {1, 0, -1, 0};
 	private static int[] dj = {0, 1, 0, -1};
 	private static Queue<Point> queue = new LinkedList<Point>();
@@ -43,24 +41,35 @@ public class _Lim2178_2 {
 		visit[0][0] = true;
 		queue.add(new Point(0, 0));
 		
-		while(!queue.isEmpty()) {
+		outer : while(!queue.isEmpty()) {
 			
-			Point p = queue.poll();
-			int i = p.getI();
-			int j = p.getJ();
+			int size = queue.size();
 			
-			for(int k = 0; k < 4; k++) {
+			for(int h = 0; h < size; h++) {
 				
-				int nextI = i + di[k];
-				int nextJ = j + dj[k];
+				Point p = queue.poll();
+				int i = p.getI();
+				int j = p.getJ();
 				
-				if(nextI >= n || nextI < 0 || nextJ >= m || nextJ < 0) {
-					continue;
-				}
-				
-				if(maze[nextI][nextJ] && !visit[nextI][nextJ]) {
-					visit[nextI][nextJ] = true;
-					queue.add(new Point(nextI, nextJ));
+				for(int k = 0; k < 4; k++) {
+					
+					int nextI = i + di[k];
+					int nextJ = j + dj[k];
+					
+					if(nextI >= n || nextI < 0 || nextJ >= m || nextJ < 0) {
+						continue;
+					}
+					
+					if(maze[nextI][nextJ] && !visit[nextI][nextJ]) {
+						
+						if(nextI == n - 1 && nextJ == m - 1) {
+							cnt++;
+							break outer;
+						}
+						
+						visit[nextI][nextJ] = true;
+						queue.add(new Point(nextI, nextJ));
+					}
 				}
 			}
 			
