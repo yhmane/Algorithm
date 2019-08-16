@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _Lim1167 {
+public class Lim1167 {
 	private static int diameter = 0;
+	private static int start = 1;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,9 +33,8 @@ public class _Lim1167 {
 			}
 		}
 		
-		for(int i = 1; i <= v; i++) {
-			bfsMethod(lists, i, v);
-		}
+		bfsMethod(lists, start, v);
+		bfsMethod(lists, start, v);
 		
 		System.out.println(diameter);
 	}
@@ -48,11 +48,13 @@ public class _Lim1167 {
 		queue2.add(0);
 		
 		while(!queue.isEmpty()) {
-			List<Point> list = lists[queue.poll()];
+			int a = queue.poll();
+			List<Point> list = lists[a];
 			int initDistance = queue2.poll();
 			
 			if(initDistance > diameter) {
 				diameter = initDistance;
+				start = a;
 			}
 			
 			for(Point p : list) {

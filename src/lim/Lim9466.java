@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _Lim9466 {
+public class Lim9466 {
+	private static int cnt;
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(br.readLine());
@@ -15,56 +17,48 @@ public class _Lim9466 {
 			StringTokenizer st = new StringTokenizer(br.readLine());			
 			int[] arr = new int[n + 1];
 			boolean[] visit = new boolean[n + 1];
-			boolean[] done = new boolean[n + 1];
+			boolean[] chosen = new boolean[n + 1];
 			
 			for(int j = 1; j <= n; j++) {
 				arr[j] = Integer.parseInt(st.nextToken());
+				chosen[arr[j]] = true;
 			}
 			
-			int idx;
-			int cnt = 0;
-			
-			while((idx = findRemainIdx(visit)) != -1) {
-				boolean[] localVisit = new boolean[n + 1];
-				search(arr, localVisit, done, idx, visit);
-			}
+			cnt = 0;
 			
 			for(int j = 1; j <= n; j++) {
 				
-				if(!done[j]) {
-					cnt++;
+				if(!chosen[j]) {
+					boolean[] localVisit = new boolean[n + 1];
+					search(arr, j, visit, localVisit);
 				}
 			}
-			
+		
 			sb.append(cnt + "\n");
 		}
 		
 		System.out.println(sb);
 	}
 	
-    private static void search(int[] arr, boolean[] localVisit, boolean[] done, int idx, boolean[] visit) {
-		localVisit[idx] = true;
+    private static void search(int[] arr, int idx, boolean[] visit, boolean[] localVisit) {
 		visit[idx] = true;
+		localVisit[idx] = true;
+		cnt++;
 		
 		if(!visit[arr[idx]]) {
-			search(arr, localVisit, done, arr[idx], visit);
-		} else if(localVisit[arr[idx]] && !done[arr[idx]]) {
-			done[arr[idx]] = true;
-			search(arr, localVisit, done, arr[idx], visit);
+			search(arr, arr[idx], visit, localVisit);
+		} else if(localVisit[arr[idx]]) {
+			subtractCycle(arr, arr[idx]);
 		}
 	}
 
-	private static int findRemainIdx(boolean[] visit) {
-		int ret = -1;
+	private static void subtractCycle(int[] arr, int idx) {
+		cnt--;
+		int i = arr[idx];
 		
-		for(int i = 1; i < visit.length; i++) {
-			
-			if(!visit[i]) {
-				ret = i;
-				break;
-			}
+		while(i != idx) {
+			cnt--;
+			i = arr[i];
 		}
-		
-		return ret;
 	}
 }

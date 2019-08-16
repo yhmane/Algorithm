@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class _Lim1167_2 {
+public class Lim1167_2 {
 	private static int diameter = 0;
+	private static int start = 1;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,10 +31,10 @@ public class _Lim1167_2 {
 			}
 		}
 		
-		for(int i = 1; i <= v; i++) {
-			boolean[] visit = new boolean[v + 1];
-			dfsMethod(lists, visit, i, v, 0);
-		}
+		boolean[] visit = new boolean[v + 1];
+		dfsMethod(lists, visit, start, v, 0);
+		visit = new boolean[v + 1];
+		dfsMethod(lists, visit, start, v, 0);
 		
 		System.out.println(diameter);
 	}
@@ -44,6 +45,7 @@ public class _Lim1167_2 {
 		
 		if(distance > diameter) {
 			diameter = distance;
+			start = i;
 		}
 		
 		int realSize = lists[i].size() / 2;
