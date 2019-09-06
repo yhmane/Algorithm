@@ -30,14 +30,14 @@ public class Hong11652 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		int N = Integer.parseInt(br.readLine());
-		Set<BigInteger> keySet = new HashSet<>();
-		Map<BigInteger, Integer> card = new HashMap<BigInteger, Integer>();
-		BigInteger minN = BigInteger.ZERO;
+		Set<Long> keySet = new HashSet<>();
+		Map<Long, Integer> card = new HashMap<Long, Integer>();
+		long minN = 0;
 		int maxCnt = 0;
 		
 		
 		for (int i = 0; i < N; i++) {
-			BigInteger key = new BigInteger(br.readLine());
+			long key = Long.parseLong(br.readLine());
 			if(card.containsKey(key)) {
 				card.put(key, card.get(key) + 1);
 			} else {
@@ -47,12 +47,12 @@ public class Hong11652 {
 		
 		keySet = card.keySet();
 		
-		for(BigInteger key : keySet) {
+		for(long key : keySet) {
 			if(card.get(key) > maxCnt) {
 				maxCnt = card.get(key);
 				minN = key;
 			} else if(card.get(key) == maxCnt) {
-				if(key.compareTo(minN) == -1) {
+				if(key < minN) {
 					minN = key;
 				}
 			}
@@ -63,5 +63,4 @@ public class Hong11652 {
 		bw.flush();
 		br.close();
 	}
-
 }
