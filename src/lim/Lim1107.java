@@ -4,14 +4,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _Lim1107 {
+public class Lim1107 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String nStr = br.readLine();
 		int n = Integer.parseInt(nStr);
 		int brokenCNT = Integer.parseInt(br.readLine());
-		int answer;
 		int curCH = 100;
+		int answer;
+		int answer1 = Integer.MAX_VALUE;
+		int answer2 = Math.abs(n - curCH);
 		boolean[] broken = new boolean[10];
 		
 		if(brokenCNT > 0) {
@@ -21,9 +23,8 @@ public class _Lim1107 {
 				broken[Integer.parseInt(st.nextToken())] = true;
 			}
 			
-			int initMin = power(10, nStr.length() - 2);
-			int initMax = power(10, nStr.length() + 1);
-			int answer1 = Integer.MAX_VALUE;
+			int initMin = 0;
+			int initMax = 1000000;
 			
 			for(int i = initMin; i <= initMax; i++) {
 				
@@ -34,14 +35,13 @@ public class _Lim1107 {
 						answer1 = diff;
 					}
 				};				
-			}
-			
-			int answer2 = Math.abs(n - curCH);
-			
-			answer = Math.min(answer1, answer2);			
+			}	
 		} else {
-			answer = nStr.length();
+			answer1 = nStr.length();
 		}
+		
+		// 예를 들면 n이 101인데 망가진 키가 없는(brokenCNT = 0) 경우, 숫자의 길이(3)과 +버튼을 눌럿을 때의 최소횟수(1)의 비교가 필요하다는 것을 간과했다.
+		answer = Math.min(answer1, answer2);			
 		
 		System.out.println(answer);
 	}
@@ -55,21 +55,6 @@ public class _Lim1107 {
 			if(broken[chStr.charAt(i) - 48]) {
 				ret = false;
 				break;
-			}
-		}
-		
-		return ret;
-	}
-
-	private static int power(int a, int n) {
-		int ret = 1;
-		
-		// 원래 거듭제곱에서는 0이 아니지만 이 문제의 경우 채널이 0번이 있어서 그냥 이렇게 함
-		if(n <= 0) {
-			ret = 0;
-		} else {
-			for(int i = 0; i < n; i++) {
-				ret *= a;
 			}
 		}
 		
