@@ -46,8 +46,8 @@ public class SubmitCheck {
 		List<Integer> week_09 = Arrays.asList(1476, 1107, 1451, 10819, 10971, 1697, 1963, 9019, 1525, 2251, 2186, 3108, 5014);
 		questionNo.addAll(week_09);
 		
-//		List<Integer> week_10 = Arrays.asList(1759, 2580, 1987, 6603, 1182, 2003, 1806, 1644, 1261, 1208, 7453, 2632, 2143, 1654, 2805, 2110, 10815, 10816, 11662);
-//		questionNo.addAll(week_10);
+		List<Integer> week_10 = Arrays.asList(1759, 2580, 1987, 6603, 1182, 2003, 1806, 1644, 1261, 1208, 7453, 2632, 2143, 1654, 2805, 2110, 10815, 10816, 11662);
+		questionNo.addAll(week_10);
 	}
 	
 	public static void main(String[] args) throws Exception {					
