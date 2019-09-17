@@ -2,10 +2,12 @@ package lim;
 
 import java.util.Arrays;
 
+// http://swlock.blogspot.com/2016/03/permutation-algorithm.html
+	
 public class PermutationPractice {
 	
 	public static void main(String[] args) {
-		int[] arr = {1, 2, 3};
+		int[] arr = {1, 2, 3, 4, 5};
 		permutation(arr, 0, arr.length);
 	}
 
@@ -13,6 +15,7 @@ public class PermutationPractice {
 		
 		if(depth == n - 1) {
 			System.out.println(Arrays.toString(arr));
+			return;
 		}
 		
 		for(int i = depth; i < n; i++) {
