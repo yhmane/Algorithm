@@ -1,4 +1,4 @@
-package lim;
+package lim.practice;
 
 import java.util.Arrays;
 

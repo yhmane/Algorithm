@@ -65,12 +65,12 @@ public class SubmitCheck {
 			String familyNM = participantInfo.get(p);
 			File directory = new File(currDir + File.separator + "src" + File.separator + familyNM);
 			
-			List<String> notSolved = questionNo.stream().map(String::valueOf).collect(Collectors.toList());
-			List<String> solved = Arrays.stream(directory.list())
-							.map(fileNm -> fileNm.substring(familyNM.length(), fileNm.lastIndexOf('.')))
-							.filter(notSolved::contains)
-							.collect(Collectors.toList());
-			
+			List<String> notSolved = questionNo.stream().map(String::valueOf).collect(Collectors.toList());			
+			List<String> solved = Arrays.stream(directory.listFiles()).filter(file -> !file.isDirectory())
+										.map(file -> file.getName().substring(familyNM.length(), file.getName().lastIndexOf('.')))
+										.filter(notSolved::contains)
+										.collect(Collectors.toList());
+											
 			File[] files = directory.listFiles();
 			long lastModified = files[0].lastModified();
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
