@@ -1,4 +1,4 @@
-package lim.practice;
+package lim.template;
 
 // https://onsil-thegreenhouse.github.io/programming/algorithm/2018/04/05/permutation_combination/
 public class CombinationPractice {
