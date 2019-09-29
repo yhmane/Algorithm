@@ -52,7 +52,5 @@ public class PermutationPractice2 {
 		int temp = selected[i];
 		selected[i] = selected[j];
 		selected[j] = temp;
-	}
-	
-	
+	}	
 }

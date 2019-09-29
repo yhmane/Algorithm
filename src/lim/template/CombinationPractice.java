@@ -22,7 +22,7 @@ public class CombinationPractice {
 			}
 			
 			System.out.println();
-		} else if(target == n) {
+		} else if(n - target < r) {
 			return;
 		} else {
 			combArr[index] = target;
