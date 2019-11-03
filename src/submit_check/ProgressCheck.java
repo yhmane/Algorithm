@@ -45,7 +45,7 @@ public class ProgressCheck {
 		StringBuffer sb = new StringBuffer();
 		String familyNM = participantInfo.get(user);
 		File directory = new File(currDir + File.separator + "src" + File.separator + familyNM);
-		List<String> solved = Arrays.stream(directory.list()).map(fileNm -> fileNm.substring(familyNM.length(), fileNm.lastIndexOf('.'))).collect(Collectors.toList());		
+		List<String> solved = Arrays.stream(directory.listFiles()).filter(elem -> !elem.isDirectory()).map(file -> file.getName().substring(familyNM.length(), file.getName().lastIndexOf('.'))).collect(Collectors.toList());		
 		int solvedCNT = getUnsolvedList(sb, solved);
 		
 		File[] files = directory.listFiles();
@@ -59,7 +59,7 @@ public class ProgressCheck {
 		}
 		
 		System.out.println("★ " + user + " - 푼 문제 수 : " + solvedCNT + ", 풀지 않은 문제 수 : " + (InitData.getTotalQuestionCNT() - solvedCNT)
-					  + " (현재 진행률 : "+ checkProgress(solvedCNT) + ") - 최종 수정일 : " + df.format(new Date(lastModified)));
+				+ " (현재 진행률 : " + checkProgress(solvedCNT)/* + ") - 최종 수정일 : " + df.format(new Date(lastModified)) */);
 		System.out.println();
 		System.out.println("------ 풀지 않은 문제 목록 ------");
 		System.out.println(sb);
