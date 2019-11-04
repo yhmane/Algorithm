@@ -3,10 +3,7 @@ package submit_check;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -50,7 +47,7 @@ public class ProgressCheck {
 		
 		File[] files = directory.listFiles();
 		long lastModified = files[0].lastModified();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		for(int i = 1; i < files.length; i++) {
 			if(files[i].lastModified() > lastModified) {
