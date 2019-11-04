@@ -56,7 +56,7 @@ public class ProgressCheck {
 		}
 		
 		System.out.println("★ " + user + " - 푼 문제 수 : " + solvedCNT + ", 풀지 않은 문제 수 : " + (InitData.getTotalQuestionCNT() - solvedCNT)
-				+ " (현재 진행률 : " + checkProgress(solvedCNT)/* + ") - 최종 수정일 : " + df.format(new Date(lastModified)) */);
+				+ " (현재 진행률 : " + checkProgress(solvedCNT) + ")"/* +  "- 최종 수정일 : " + df.format(new Date(lastModified)) */);
 		System.out.println();
 		System.out.println("------ 풀지 않은 문제 목록 ------");
 		System.out.println(sb);

@@ -82,7 +82,7 @@ public class SubmitCheck {
 			
 			System.out.println(p + " - 푼 문제  수 : " + solved.size() + ", 풀지 않은 문제 수 : " + notSolved.size() 
 					+ " (현재 진행률 : "
-					+ checkProgress(solved.size())/* + ") - 최종 수정일 : " + df.format(new Date(lastModified)) */);
+					+ checkProgress(solved.size()) + ")" /* + " - 최종 수정일 : " + df.format(new Date(lastModified)) */);
 //			System.out.println("푼 문제 목록 : " + solved);
 			System.out.println("풀지 않은 문제 목록 : " + notSolved);
 			System.out.println();
