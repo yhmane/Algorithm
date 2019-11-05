@@ -67,19 +67,19 @@ public class Lim11662 {
 		return n * n;
 	}
 	
-	private static int abs(int n) {
-		if(n < 0) {
-			return -n;
-		} else {
-			return n;
-		}
-	}
-	
-	private static int max(int a, int b) {
-		if(a > b) {
-			return a;
-		} else {
-			return b;
-		}
-	}
+//	private static int abs(int n) {
+//		if(n < 0) {
+//			return -n;
+//		} else {
+//			return n;
+//		}
+//	}
+//	
+//	private static int max(int a, int b) {
+//		if(a > b) {
+//			return a;
+//		} else {
+//			return b;
+//		}
+//	}
 }
