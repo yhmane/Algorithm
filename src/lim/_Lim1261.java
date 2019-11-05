@@ -13,6 +13,9 @@ public class _Lim1261 {
 		int m = Integer.parseInt(st.nextToken());
 		int n = Integer.parseInt(st.nextToken());
 		
+		int[][] distance = new int[n][m];
+		int[][][] wallInfo = new int[n][m][1];
+		
 		int[][] map = new int[n][m];
 		
 		for(int i = 0; i < n; i++) {
