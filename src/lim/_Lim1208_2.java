@@ -4,15 +4,11 @@ package lim;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.TreeMap;
 
 public class _Lim1208_2 {
-	private static long cnt = 0;
+	private static int index;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,15 +16,10 @@ public class _Lim1208_2 {
 		int n = Integer.parseInt(st.nextToken());
 		int s = Integer.parseInt(st.nextToken());
 		
-		int[] seq = new int[n];
 		st = new StringTokenizer(br.readLine());
 		
-		for(int i = 0; i < n; i++) {
-			seq[i] = Integer.parseInt(st.nextToken());
-		}
-		
 		if(n == 1) {
-			if(seq[0] == s) {
+			if(Integer.parseInt(st.nextToken()) == s) {
 				System.out.println(1);
 			} else {
 				System.out.println(0);
@@ -37,63 +28,72 @@ public class _Lim1208_2 {
 			return;
 		}
 		
-		int middle = n / 2;
+		int[] left = new int[n / 2];
+		int[] leftSubset = new int[1 << left.length];
+		int[] right = new int[n - n / 2];
+		int[] rightSubset = new int[1 << right.length];
 		
-		Map<Integer, Long> partSum1 = new TreeMap<Integer, Long>();
-		
-		for(int i = 0; i < middle; i++) {
-			dfs(i, seq, seq[i], s , middle, partSum1);
+		for(int i = 0; i < left.length; i++) {
+			left[i] = Integer.parseInt(st.nextToken());
 		}
+		
+		for(int i = 0; i < right.length; i++) {
+			right[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		index = 0;
+		subsetSum(left, leftSubset, 0, 0);
+		Arrays.sort(leftSubset);
+		
+		index = 0;
+		subsetSum(right, rightSubset, 0, 0);
+		Arrays.sort(rightSubset);
+		
+		int leftIndex = 0;
+		int rightIndex = rightSubset.length - 1;
+		long answer = 0;
+		
+		while(leftIndex < leftSubset.length && rightIndex >= 0) {
+			int leftVal = leftSubset[leftIndex];
+			int rightVal = rightSubset[rightIndex];
+			int sum = leftVal + rightVal;
+			
+			if(sum == s) {
+				int leftCNT = 1;
 				
-		Map<Integer, Long> partSum2 = new TreeMap<Integer, Long>(Collections.reverseOrder());
-		
-		for(int i = middle; i < n; i++) {
-			dfs(i, seq, seq[i], s , n, partSum2);
-		}
-		
-		Iterator<Integer> iterator1 = partSum1.keySet().iterator();
-		Iterator<Integer> iterator2 = partSum2.keySet().iterator();
-		int a = iterator1.next();
-		int b = iterator2.next();
-		
-		while(true) {
-			int sum = a + b;
-			
-			try {
-				if(sum == s) {
-					cnt += partSum1.get(a) * partSum2.get(b);
-					a = iterator1.next();
-					b = iterator2.next();
-				} else if(sum < s) {
-					a = iterator1.next();
-				} else {
-					b = iterator2.next();
+				while(++leftIndex < leftSubset.length && leftSubset[leftIndex] == leftVal) {
+					leftCNT++;
 				}
-			} catch (NoSuchElementException e) {
-				break;
-			}			
+				
+				int rightCNT = 1;
+				
+				while(--rightIndex >= 0 && rightSubset[rightIndex] == rightVal) {
+					rightCNT++;
+				}
+				
+				answer += ((long) leftCNT) * rightCNT;
+				
+			} else if(sum < s) {
+				while(++leftIndex < leftSubset.length && leftSubset[leftIndex] == leftVal) {
+					// nothing
+				}			
+			} else {
+				while(--rightIndex >= 0 && rightSubset[rightIndex] == rightVal) {
+					// nothing
+				}	
+			}
 		}
 		
-			
-		System.out.println(cnt);
+		System.out.println(answer);
 	}
-	
-	private static void dfs(int i, int[] seq, int sum, int s, int end, Map<Integer, Long> partSum) {
-		
-		if(sum == s) {
-			cnt++;
-		} 
-		
-		Long n = partSum.get(sum);
-		
-		if(n == null) {
-			partSum.put(sum, 1L);
-		} else {
-			partSum.put(sum, n + 1);
+
+	private static void subsetSum(int[] arr, int[] subset, int cnt, int sum) {
+		if(cnt == arr.length) {
+			subset[index++] = sum;
+			return;
 		}
 		
-		for(int j = i + 1; j < end; j++) {
-			dfs(j, seq, sum + seq[j], s, end, partSum);
-		}
+		subsetSum(arr, subset, cnt + 1, sum + arr[cnt]);
+		subsetSum(arr, subset, cnt + 1, sum);
 	}
 }
