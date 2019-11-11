@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Lim1208_2 {
+public class Lim1208_2 {
 	private static int index;
 	
 	public static void main(String[] args) throws Exception {
@@ -82,6 +82,10 @@ public class _Lim1208_2 {
 					// nothing
 				}	
 			}
+		}
+		
+		if(s == 0) {
+			answer--;
 		}
 		
 		System.out.println(answer);
