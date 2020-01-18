@@ -29,15 +29,16 @@ public class Hong10250 {
 		
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			int h = Integer.parseInt(st.nextToken());
-			int w = Integer.parseInt(st.nextToken());
-			int n = Integer.parseInt(st.nextToken());
+			int h = Integer.parseInt(st.nextToken()); //층 수
+			int w = Integer.parseInt(st.nextToken()); //층의 방 수
+			int n = Integer.parseInt(st.nextToken()); //손님 번호
 			
-			if (n % h == 0) {
-				sb.append(h).append("0").append(n / h).append("\n");
+			if(n % h == 0) {
+				sb.append(h * 100 + n / h).append("\n");
 			} else {
-				sb.append(n % h).append("0").append(n / h + 1).append("\n");
+				sb.append((n % h) * 100 + n / h + 1).append("\n");
 			}
+			
 		}
 		
 		System.out.println(sb);
