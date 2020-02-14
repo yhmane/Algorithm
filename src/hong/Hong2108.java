@@ -40,8 +40,6 @@ public class Hong2108 {
 		int sum = 0;
 		int cnt = 0;
 		int bin = 0;
-		int cntSum = 0;
-		int mid = 0;
 		
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(br.readLine());
@@ -60,24 +58,20 @@ public class Hong2108 {
 		
 		Arrays.sort(arr);
 		
+		boolean secondFlag = false;
 		for (int i = 0; i < 8001; i++) {
 			if(cntArr[i] > cnt) {
 				cnt = cntArr[i];
-			}
-			
-			cntSum += cntArr[i];
-		}
-		
-		
-		for (int i = 0, k = 0; i < 8001 && k < 2; i++) {
-			if(cntArr[i] == cnt) {
-				k++;
+				secondFlag = false;
+				bin = i;
+			} else if(cntArr[i] == cnt && !secondFlag) {
+				secondFlag = true;
 				bin = i;
 			}
 		}
 		
 		System.out.println(Math.round(((double)sum / N)));
-		System.out.println(arr[N / 2 + 1]);
+		System.out.println(arr[((N + 1) / 2) - 1]);
 		System.out.println(bin - 4000);
 		System.out.println(max - min);
 	}
