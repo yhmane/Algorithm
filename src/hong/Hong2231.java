@@ -17,7 +17,7 @@ public class Hong2231 {
 		String strN = br.readLine();
 		int N = Integer.parseInt(strN);
 		
-		int offset = (strN.length() - 1) * 9;
+		int offset = strN.length() * 9;
 		
 		int res = 0;
 		
