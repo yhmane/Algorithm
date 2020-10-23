@@ -5,6 +5,8 @@ https://www.acmicpc.net/problem/2606
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Hong2606 {
@@ -13,6 +15,7 @@ public class Hong2606 {
 	static int N;
 	static int startPoint = 1;
 	static int ans;
+	static int bfsAns;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,9 +34,11 @@ public class Hong2606 {
 			graph[a][b] = graph[b][a] = 1;
 		}
 		
-		dfs(startPoint);
+//		dfs(startPoint);
+		bfs(startPoint);
 		
-		System.out.println(ans);
+//		System.out.println(ans);
+		System.out.println(bfsAns);
 	}
 	
 	private static void dfs(int nodeNum) {
@@ -43,6 +48,26 @@ public class Hong2606 {
 			if (graph[nodeNum][i] == 1 && visited[i] == false) {
 				dfs(i);
 				ans++;
+			}
+		}
+	}
+	
+	private static void bfs(int nodeNum) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		
+		queue.add(nodeNum);
+		visited[1] = true;
+		
+		while (!queue.isEmpty()) {
+			int temp = queue.poll();
+			
+			for (int i = 1; i < N + 1; i++) {
+				if (graph[temp][i] == 1 && visited[i] == false) {
+					queue.add(i);
+					visited[i] = true;
+					
+					bfsAns++;
+				}
 			}
 		}
 	}
