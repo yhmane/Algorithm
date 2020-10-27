@@ -1,22 +1,13 @@
 package hwang;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Hwang1000 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] arr = scanner.nextLine().split(" ");
 
-    static String[] input;
-    public Hwang1000() {}
-    public void solution() throws IOException {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        input             = br.readLine().split(" ");
-
-        System.out.println(Integer.parseInt(input[0])+Integer.parseInt(input[1]));
-
+        System.out.println(Integer.parseInt(arr[0]) + Integer.parseInt(arr[1]));
     }
 }
-
-
 
