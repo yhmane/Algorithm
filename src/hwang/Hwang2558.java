@@ -1,20 +1,13 @@
 package hwang;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Hwang2558 {
+    public static void main(String[] arhs) {
+        Scanner scanner = new Scanner(System.in);
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
 
-    static int[] num = new int[2];
-    public Hwang2558() {}
-    public void solution() throws IOException {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        num[0]            = Integer.parseInt(br.readLine());
-        num[1]            = Integer.parseInt(br.readLine());
-
-        System.out.println(num[0] + num[1]);
-
+        System.out.println(num1 + num2);
     }
 }

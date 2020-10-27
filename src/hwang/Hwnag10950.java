@@ -4,22 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * @author hwang-yunho on 2019-08-04
- * @project Algorithm
- */
-public class Hwang1676 {
+public class Hwnag10950 {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
 
-        int count = 0;
-        while(num > 0) {
-            num /= 5;
-            count += num;
+        while(num-- > 0) {
+            String[] arr = br.readLine().split(" ");
+            System.out.println(Integer.parseInt(arr[0]) + Integer.parseInt(arr[1]));
         }
-
-        System.out.println(count);
     }
 }

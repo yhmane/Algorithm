@@ -1,12 +1,7 @@
 package hwang;
 
 public class Hwang2557 {
-
-    public Hwang2557() {}
-    public void solution(){
+    public static void main(String[] args) {
         System.out.println("Hello World!");
     }
 }
-
-
-
