@@ -1,4 +1,4 @@
-package hwang;
+package hwang.io;
 
 public class Hwang2557 {
     public static void main(String[] args) {

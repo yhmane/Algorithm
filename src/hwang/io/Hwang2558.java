@@ -1,4 +1,4 @@
-package hwang;
+package hwang.io;
 
 import java.util.Scanner;
 
