@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Hwnag10950 {
+public class Hwang11021 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
 
-        while(num-- > 0) {
-            String[] arr = br.readLine().split(" ");
-            System.out.println(Integer.parseInt(arr[0]) + Integer.parseInt(arr[1]));
+        for (int i = 1; i <= num; i++) {
+            String[] nums = br.readLine().split(" ");
+            System.out.println("Case #" + i + ": " + (Integer.parseInt(nums[0]) +  Integer.parseInt(nums[1])));
         }
     }
 }
