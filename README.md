@@ -20,10 +20,11 @@ BOJ의 알고리즘 (입출력, 수학, 동적프로그래밍, 탐욕, 그래프
 
 * package : 참여자의 성을 따서 생성해 두었음
 * Class   : 성 + 문제번호
-
+* 시간은 30분을 제한하여 풀것
+* 일주일에 5문제 이상 커밋!!
 
 ## Clone
-<pre><code>https://github.com/yhmane/Algorithm.git</code></pre>
+<pre><code>git clone https://github.com/yhmane/Algorithm.git</code></pre>
 
 ## 참여
 자율책임제
